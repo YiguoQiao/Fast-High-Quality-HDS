@@ -29,8 +29,8 @@ sigma_f2=1000;
 sigma_d=2*wins^2;
 net=vgg16;
 
-RGB_file_path =  'E:\E\database\Upsample_2006\RGB image\';%path of RGB images
-Depth_file_path =  'E:\E\database\Upsample_2006\Depth\';%path of depth maps
+RGB_file_path =  '..\datasets\RGB image\';%path of RGB images
+Depth_file_path =  '..\datasets\Depth\';%path of depth maps
 img_list = dir(strcat(RGB_file_path,'*.png'));%image list
 img_num = length(img_list);%number of images
 if img_num > 0 
@@ -54,6 +54,8 @@ if img_num > 0
             
             if model==2 || model==4 % for F-HDS and FC-HDS model
             Fea_Map1_Pre=double(rgb2gray(RGB(mm:mm+r*(dstRow-1)+1,nn:nn+r*(dstCol-1)+1,:)));%multi-layer feature extraction for multi-layer feature extraction
+            %Note, the multi-layer feature extraction was previously written in python. For the convenience of use, the author rewritten it with matlab. 
+            %You can also find the original multi-layer feature extraction results under the folder 'multi-layer feature maps'.
                 switch xx
                     case 1
                         Fea_Map1_1=FindFea1(Fea_Map1_Pre);
