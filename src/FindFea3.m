@@ -9,11 +9,11 @@ for i=1:conN1
 end
 for i=1:conN1
     for j=1:conN2
-        Fea_Map1_2(:,:,(j-1)*conN1+i) = conv2(Fea_Map1_1(1:2:end,1:2:end,i),conv_kern2(:,:,j),'same');
+        Fea_Map1_2(:,:,(j-1)*conN1+i) = conv2(max_pooling(Fea_Map1_1(:,:,i),2),conv_kern2(:,:,j),'same');
     end
 end
 for i=1:conN1*conN2
     for j=1:conN3
-        Fea_Map1_3(:,:,(j-1)*conN1*conN2+i) = conv2(Fea_Map1_2(1:2:end,1:2:end,i),conv_kern3(:,:,j),'same');
+        Fea_Map1_3(:,:,(j-1)*conN1*conN2+i) = conv2(max_pooling(Fea_Map1_2(:,:,i),2),conv_kern3(:,:,j),'same');
     end
 end
